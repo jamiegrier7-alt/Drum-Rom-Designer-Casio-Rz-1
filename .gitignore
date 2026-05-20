@@ -1,0 +1,7 @@
+build/
+.vscode/*.log
+xone-rom/
+samples/
+!samples/.gitkeep
+reference-files/
+.github/copilot-instructions.md

@@ -1,0 +1,14 @@
+# Target labels
+ rtmidi-populate
+# Source files and their labels
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate-complete.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-build.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-configure.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-download.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-install.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-mkdir.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-patch.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-test.rule
+/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-update.rule

@@ -1,0 +1,10 @@
+{
+  "chip": "27c256",
+  "size_bytes": 32768,
+  "slots": [
+    { "name": "clap", "start": 0, "end": 2510, "source": "clap.raw" },
+    { "name": "ride", "start": 2511, "end": 16445, "source": "ride.raw" },
+    { "name": "cowbell", "start": 16446, "end": 18396, "source": "cowbell.raw" },
+    { "name": "crash", "start": 18397, "end": 32767, "source": "crash.raw" }
+  ]
+}

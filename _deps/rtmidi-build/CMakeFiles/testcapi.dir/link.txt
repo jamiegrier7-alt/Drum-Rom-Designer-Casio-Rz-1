@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/testcapi.dir/tests/testcapi.c.o -o tests/testcapi  -Wl,-rpath,/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-build librtmidi.so.7.0.0 

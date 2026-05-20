@@ -1,0 +1,14 @@
+{
+  "chip": "27c256",
+  "size_bytes": 32768,
+  "slots": [
+    { "name": "kick", "start": 0, "end": 4095, "source": "kick.raw" },
+    { "name": "snare", "start": 4096, "end": 8191, "source": "snare.raw" },
+    { "name": "hihat", "start": 8192, "end": 12287, "source": "hihat.raw" },
+    { "name": "tom", "start": 12288, "end": 16383, "source": "tom.raw" },
+    { "name": "clap", "start": 16384, "end": 20479, "source": "clap.raw" },
+    { "name": "slot6", "start": 20480, "end": 24575, "source": "slot6.raw" },
+    { "name": "slot7", "start": 24576, "end": 28671, "source": "slot7.raw" },
+    { "name": "slot8", "start": 28672, "end": 32767, "source": "slot8.raw" }
+  ]
+}

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall -shared -Wl,-soname,librtmidi.so.7 -o librtmidi.so.7.0.0 CMakeFiles/rtmidi.dir/RtMidi.cpp.o CMakeFiles/rtmidi.dir/rtmidi_c.cpp.o  -ljack 

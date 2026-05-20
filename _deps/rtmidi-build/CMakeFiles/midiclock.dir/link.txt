@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall CMakeFiles/midiclock.dir/tests/midiclock.cpp.o -o tests/midiclock  -Wl,-rpath,/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-build librtmidi.so.7.0.0 

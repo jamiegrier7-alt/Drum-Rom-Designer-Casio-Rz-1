@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/CMakeFiles/rtmidi-populate-complete.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-build.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-configure.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-download.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-install.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-patch.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-test.rule"
+		},
+		{
+			"file" : "/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-subbuild/rtmidi-populate-prefix/src/rtmidi-populate-stamp/rtmidi-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"rtmidi-populate"
+		],
+		"name" : "rtmidi-populate"
+	}
+}

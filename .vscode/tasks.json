@@ -1,0 +1,61 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Generate Drum ROM BIN (C++)",
+			"type": "shell",
+			"command": "./build/drumrom_build_bin",
+			"args": [
+				"--map",
+				"configs/27c256_map.example.json",
+				"--sample-dir",
+				"samples",
+				"--out",
+				"roms/drumrom_27c256.bin",
+				"--make-factory"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate RZ-1 ROM A BIN (C++)",
+			"type": "shell",
+			"command": "./build/drumrom_build_bin",
+			"args": [
+				"--map",
+				"configs/rz1_rom_a_map.json",
+				"--sample-dir",
+				"samples",
+				"--out",
+				"roms/rz1_rom_a.bin"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate RZ-1 ROM B BIN (C++)",
+			"type": "shell",
+			"command": "./build/drumrom_build_bin",
+			"args": [
+				"--map",
+				"configs/rz1_rom_b_map.json",
+				"--sample-dir",
+				"samples",
+				"--out",
+				"roms/rz1_rom_b.bin"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Configure + Build (build folder)",
+			"type": "shell",
+			"command": "cmake -S . -B build && cmake --build build -j4",
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

@@ -1,0 +1,269 @@
+ TIMESTAMP IN PORT STATUS DATA1 DATA2 CHAN NOTE EVENT               
+ Opened MIDI Input
+ Opened MIDI Output
+ Closed MIDI Input
+ Closed MIDI Output
+ Opened MIDI Input
+ Opened MIDI Output
+ 00004B42  MOX  2     F0  Buffer:     7 Bytes   System Exclusive      
+ SYSX: F0 44 01 00 70 10 00
+ 00004B44  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00004C54  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00004D63  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00004E74  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00004F83  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005093  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000051A2  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000052B1  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000053C0  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000054D0  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000055E0  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000056EE  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000057FD  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000590D  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005A1C  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005B2B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005C3B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005D4C  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005E5B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00005F69  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006079  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006188  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006298  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000063A6  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000064B7  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000065C6  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000066D6  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000067E4  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000068F4  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006A03  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006B13  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006C23  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006D32  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006E42  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00006F51  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007061  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007170  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000727F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000738E  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000749D  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000075AC  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000076BC  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000077CD  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000078DD  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000079EC  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007AFC  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007C0B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007D1A  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007E29  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00007F38  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008048  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008157  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008266  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008377  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008487  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008595  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000086A6  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000087B5  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000088C5  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000089D3  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008AE3  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008BF3  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008D02  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008E12  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00008F24  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009033  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009143  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009252  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009361  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009470  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009580  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009692  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000097A1  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000098B1  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 000099C0  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009ACF  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009BDE  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009CEE  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009E02  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 00009F10  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A021  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A130  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A240  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A351  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A460  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A56F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A67E  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A78F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A89F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000A9AE  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000AABF  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000ABCD  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000ACDC  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000ADEB  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000AEFA  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B00A  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B119  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B229  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B338  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B448  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B557  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B666  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B775  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B885  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000B995  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BAA5  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BBB5  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BCC4  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BDD5  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BEE3  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000BFF2  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C101  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C210  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C31F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C42F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C53F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C64F  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C75E  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C86D  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000C97D  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CA8B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CB9B  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CCAA  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CDBB  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CEC9  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000CFD9  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000D0E9  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000D1FA  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000D30A  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31
+ 0000D41A  MOX  2     F0  Buffer:     2 Bytes   System Exclusive      
+ SYSX: 70 31

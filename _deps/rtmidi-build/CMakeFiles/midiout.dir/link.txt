@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall CMakeFiles/midiout.dir/tests/midiout.cpp.o -o tests/midiout  -Wl,-rpath,/home/jamie/Documents/vscode/Drum-Rom-Designer-Casio-Rz-1-main/_deps/rtmidi-build librtmidi.so.7.0.0 

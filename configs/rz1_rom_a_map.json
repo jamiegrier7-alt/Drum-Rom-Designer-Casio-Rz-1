@@ -1,0 +1,16 @@
+{
+  "chip": "27c256",
+  "size_bytes": 32768,
+  "slots": [
+    { "name": "tom1", "start": 0, "end": 3790, "source": "tom1.raw" },
+    { "name": "tom2", "start": 3791, "end": 7634, "source": "tom2.raw" },
+    { "name": "tom3", "start": 7635, "end": 11721, "source": "tom3.raw" },
+    { "name": "kick", "start": 11722, "end": 13348, "source": "kick.raw" },
+    { "name": "snare", "start": 13349, "end": 16572, "source": "snare.raw" },
+    { "name": "rimshot", "start": 16573, "end": 17875, "source": "rimshot.raw" },
+    { "name": "closed_hihat", "start": 17876, "end": 19098, "source": "closed_hihat.raw" },
+    { "name": "open_hihat", "start": 19099, "end": 31107, "source": "open_hihat.raw" },
+    { "name": "metronome_click", "start": 31108, "end": 31614, "source": "metronome_click.raw" },
+    { "name": "empty", "start": 31615, "end": 32767, "source": "empty.raw" }
+  ]
+}
