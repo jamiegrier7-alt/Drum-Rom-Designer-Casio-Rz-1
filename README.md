@@ -85,8 +85,23 @@ For the Elements drum voice mode : This project is a derivative work based on th
 
 ## Building 
 
-It may build if you run "cmake --build build " in the root folder
-You can run the program with ./build/drumrom_gui
+install dependancies with 
+
+sudo apt install libsdl2-dev libsdl2-image-dev libasound2-dev libsndfile1-dev
+
+install the onerom cli for optional live rom editing
+
+in the main folder run  
+
+cmake -S . -B build --fresh
+cmake --build build -j
+
+
+You can run the program with 
+
+./build/drumrom_gui
+
+
 YMMV
 
 
