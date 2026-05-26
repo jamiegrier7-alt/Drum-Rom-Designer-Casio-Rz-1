@@ -4,7 +4,7 @@
   "samples_folder": "samples",
   "monitor_width": 1920,
   "monitor_height": 1080,
-  "onerom_serial_rom_a": "",
+  "onerom_serial_rom_a": "2BA85474BD334910",
   "onerom_serial_rom_b": "4829A8BF2DF9059E",
   "onerom_single_device_role": 1,
   "loop_split_reset_slots": 1,

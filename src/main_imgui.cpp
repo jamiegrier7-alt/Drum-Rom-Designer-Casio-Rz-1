@@ -363,13 +363,13 @@ bool read_legacy_drum_params(std::istream& in, std::uint32_t version, DrumParams
         if (version >= 8) {
             // Extra plausibility check for mixed v8 layouts.
             in.seekg(after_path_len + static_cast<std::streamoff>(sample_path_len));
-            std::uint32_t source_rate_hz = 0;
+            float source_rate_hz = 0.0f;
             float start_pct = 0.0f;
             float end_pct = 0.0f;
             in.read(reinterpret_cast<char*>(&source_rate_hz), sizeof(source_rate_hz));
             in.read(reinterpret_cast<char*>(&start_pct), sizeof(start_pct));
             in.read(reinterpret_cast<char*>(&end_pct), sizeof(end_pct));
-            if (!in || source_rate_hz == 0u || source_rate_hz > 500000u || start_pct < -1.0f || start_pct > 1000.0f || end_pct < -1.0f || end_pct > 1000.0f) {
+            if (!in || !std::isfinite(source_rate_hz) || source_rate_hz < 1000.0f || source_rate_hz > 500000.0f || start_pct < -1.0f || start_pct > 1000.0f || end_pct < -1.0f || end_pct > 1000.0f) {
                 in.clear();
                 in.seekg(start);
                 return false;
@@ -406,8 +406,11 @@ bool read_legacy_drum_params(std::istream& in, std::uint32_t version, DrumParams
 
     if (version >= 8) {
         // Some legacy v8 files were written with a 600-byte DrumParams block,
-        // while others used the later 628-byte layout. Probe both safely.
-        return try_read_with_size(kLegacyPresetDrumParamsV8Size) || try_read_with_size(kLegacyPresetDrumParamsV7Size);
+        // while others used the later 628-byte layout. Some kits also carried
+        // the older 588-byte payload with a v8 header. Probe all safely.
+        return try_read_with_size(kLegacyPresetDrumParamsV8Size) ||
+               try_read_with_size(kLegacyPresetDrumParamsV7Size) ||
+               try_read_with_size(kLegacyPresetDrumParamsV2Size);
     }
     if (version >= 4) {
         return try_read_with_size(kLegacyPresetDrumParamsV7Size);
