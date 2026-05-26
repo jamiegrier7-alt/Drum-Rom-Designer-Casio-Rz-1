@@ -12,21 +12,20 @@ It can do a few things -
 
 You can quickly switch between synth drums and sample-based sounds, tune envelopes and tone, manage pad sounds, and build complete kits that are ready for loading to the drum-machine hardware sample ROM.
 
-Currently very early iteration with bad code, many bugs and everything laid out a bit weird. Maybe this will improve, maybe not.. 
+Currently very early iteration with bad code, many bugs and everything laid out a bit weird.Hopefully this will improve
 
-This has been made in vscode and currently only compiled by me for ubuntu 25.10
+This has been made in vscode and currently only compiled by me for ubuntu 26.04
 
 Tested on linux only so far. I have hopes for a windows and mac version.
 
 Planned improvements
 
-- sysex librarian and sample dump is not working yet.
 
 - Profiles for other drum machines - TR-707 and Korg DDD1 being the main focus. Also a Wavetable version for Korg DW6000 and DW8000 of which I have a working prototype. 
 
 - Software bending of the eprom, witout the need for hardware bends. 
 
-
+- confirm operation of pattern backup over midi sysex dump. Audio confirmed to function. 
 
 
 ## Dependencies
