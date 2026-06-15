@@ -1,0 +1,184 @@
+Drum Rom Designer Suite Plan (Desktop + TrimUI Brick)
+Date: 2026-06-15
+
+Goal
+- Build a two-program suite from one repository:
+  1) Desktop app for laptop/desktop editing and kit/file generation.
+  2) Handheld app (TrimUI Brick) with compact screens and gamepad-first controls.
+- Keep essential functionality equivalent between both apps.
+- Make handheld build and packaging compatible with PortMaster.
+
+Product Direction (Route 2)
+- Start with a simplified handheld-first UI (small-screen optimized), not a compressed desktop clone.
+- Keep file compatibility identical (kits, presets, ROM map/output files) between desktop and handheld.
+
+Current Repo Reality (Confirmed)
+- Existing primary GUI target: drumrom_gui (SDL2 + ImGui desktop app).
+- Main desktop integration currently concentrated in src/main_imgui.cpp.
+- Input shortcuts are keyboard-centric in src/main_ui_runtime_input.cpp.
+- A scaffold src/main.cpp exists but is not the full app.
+
+Target Architecture
+- Shared core library (new): drumrom_app_core
+  - Session/app state model
+  - Slot edit operations
+  - Preset/kit load-save
+  - ROM generation orchestration hooks
+  - Shared business rules and validation
+- Desktop executable: drumrom_gui (or renamed drumrom_desktop)
+  - Existing desktop-oriented ImGui layout and keyboard/mouse behavior
+- Handheld executable: drumrom_handheld (new)
+  - Compact paged UI
+  - D-pad + face button + shoulder navigation
+  - Reduced control density per page for readability and speed
+
+CMake / Build Plan
+1) Add options
+   - BUILD_DESKTOP ON (default)
+   - BUILD_HANDHELD ON or OFF initially until stable
+2) Add new targets
+   - drumrom_app_core (library)
+   - drumrom_handheld (executable)
+3) Keep/reuse existing shared libs
+   - drumrom_synth, sample/preset/settings modules
+4) Link both executables against shared core + synth modules
+5) Ensure both compile independently from same source tree
+
+Refactor Sequence (Low Risk)
+1) Extract non-UI app state and operations from src/main_imgui.cpp into app-core modules.
+2) Rewire desktop app to use app-core while preserving current behavior.
+3) Add handheld main entry and compact UI shell.
+4) Add input abstraction layer:
+   - Desktop keyboard profile
+   - Handheld gamepad profile
+5) Incrementally move shared logic out of UI-heavy files to keep parity maintainable.
+
+Handheld UI Structure (Proposed)
+Page 1: Slot Select + Preview
+- Fast slot navigation, audition, source toggle
+
+Page 2: Synth Edit
+- Essential synth params only; grouped into small chunks
+
+Page 3: Sample Edit
+- Start/end/tune/filter envelope essentials
+
+Page 4: Kit/Preset Browser
+- Load/save/apply with simple list navigation
+
+Page 5: Export/Upload
+- Build ROM outputs, trigger transfer actions where supported
+
+Page 6: Settings/System
+- Handheld-specific settings, display scale, control hints
+
+Handheld Control Map (Baseline)
+- D-pad: Move selection/focus
+- A: Confirm/activate/edit
+- B: Back/cancel
+- Start: Global action menu
+- Select: Quick preview or context action toggle
+- L/R shoulder buttons are disabled on the handheld devices we plan to support, so they must not be used for core navigation.
+
+PortMaster Compatibility Checklist
+- Separate handheld binary target (no desktop keyboard dependency for core flow)
+- Launch script for PortMaster that:
+  - Sets working directory
+  - Exports required runtime environment variables
+  - Launches handheld binary with correct permissions
+- Bundle required assets/data paths used by handheld mode
+- Ensure controller-only navigation is possible across all essential tasks
+- Keep save/load paths and writable directories compatible with handheld filesystem conventions
+
+Data / Format Compatibility Rules
+- Use same preset/kit formats on desktop and handheld.
+- Do not fork file schema unless unavoidable.
+- If schema evolves, add explicit versioning + migration, never silent breakage.
+
+Milestone Plan
+M1: Build Scaffolding
+- Add CMake options/targets and compile both desktop + handheld shells.
+
+M2: Shared Core Foundation
+- Move first slice of shared logic (state + slot operations) to app-core.
+
+M3: Handheld Input Layer
+- Add SDL gamepad mapping and abstract action dispatch.
+
+M4: Compact UI Pages
+- Implement paged handheld UI with essential editing workflow.
+
+M5: File/Export Parity
+- Ensure kit/preset/ROM generation and compatibility parity.
+
+M6: PortMaster Packaging
+- Add packaging layout + launch script + runtime verification.
+
+M7: Validation
+- Functional parity checks and performance sanity on target handheld.
+
+Risks and Mitigations
+- Risk: main_imgui.cpp concentration makes extraction noisy.
+  Mitigation: slice-by-slice extraction with behavior-preserving tests/checkpoints.
+- Risk: small-screen overload.
+  Mitigation: strict page density limits and action-first flow.
+- Risk: control conflicts in text/input widgets.
+  Mitigation: centralized action map + mode-aware focus handling.
+- Risk: feature drift between desktop and handheld.
+  Mitigation: all business rules in app-core, UI layers thin.
+
+Immediate Next Implementation Steps
+1) Introduce drumrom_app_core and drumrom_handheld targets in CMake.
+2) Create handheld app entry with minimal page router and placeholder pages.
+3) Extract first shared state/actions from desktop main file into app-core.
+4) Add initial gamepad action mapper and wire A/B/L/R + D-pad.
+5) Add docs for build commands and initial PortMaster launch script template.
+
+Definition of Done (Initial Suite Stage)
+- Desktop target compiles and runs unchanged in core workflow.
+- Handheld target compiles and runs as a separate executable.
+- Handheld supports controller-only navigation for essential workflow.
+- Shared file formats remain interoperable across both targets.
+- PortMaster launch path exists and is documented.
+
+USB Strategy and Compatibility Contract
+- Product position:
+  - USB upload to OneROM is essential to the intended handheld workflow.
+  - The handheld app must still run without USB availability.
+  - Technically literate users may need to enable USB host/permissions on specific handheld firmware/OS builds.
+- Compatibility tiers:
+  - Tier A (Full): Edit + generate + direct USB upload.
+  - Tier B (Offline): Edit + generate, with upload unavailable and export workflow offered.
+- Support boundary:
+  - Application code provides upload logic, diagnostics, and clear failure reasons.
+  - Device-specific firmware tweaks, USB host enablement, and udev policy are expected user/community setup tasks.
+  - Project docs provide known-good recipes where available.
+
+USB Upload Requirements in Handheld App
+- Runtime capability checks (startup and on-demand):
+  - USB host capability present/absent.
+  - OneROM device detected/not detected.
+  - Permission status sufficient/insufficient.
+- Diagnostics panel must show:
+  - Current upload capability state.
+  - Last transfer result.
+  - Actionable remediation text (for example: host mode, permissions, cable/power hints).
+- Fallback behavior:
+  - Never block editing/generation when upload is unavailable.
+  - Provide export-first workflow when upload backend is unavailable.
+
+Portability Implementation Rules
+- Keep upload transport as a separate backend interface from editor/generator core.
+- Use runtime backend selection (USB backend vs no-upload backend) rather than compile-time hard dependency.
+- Keep file formats identical across desktop/handheld to avoid split ecosystems.
+
+Cross-Handheld Enablement Plan
+- Maintain a handheld support matrix document with:
+  - Device family
+  - OS/firmware
+  - USB host status
+  - Permission recipe (if needed)
+  - Upload test status
+  - Known caveats
+- Treat "app runs + export works" as baseline compatibility.
+- Treat "direct USB upload works" as best-effort per device profile and document status transparently.

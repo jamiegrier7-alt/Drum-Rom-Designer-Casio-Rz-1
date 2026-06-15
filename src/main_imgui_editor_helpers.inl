@@ -671,21 +671,101 @@ void render_editor_left_pane(SlotConfig& cfg, bool& changed, float scaled_wavefo
                     break;
             }
         } else {
-            changed |= slider_float_with_text_input("Source Rate Hz (.raw)", &cfg.sample.source_rate_hz, 1000.0f, 96000.0f, "%.0f");
-            changed |= input_int_with_scroll("Start %", &cfg.sample.start_pct, 0, 100);
-            changed |= input_int_with_scroll("End %", &cfg.sample.end_pct, 0, 100);
-            changed |= input_int_with_scroll("Loop Start %", &cfg.sample.loop_start_pct, 0, 100);
-            changed |= input_int_with_scroll("Loop End %", &cfg.sample.loop_end_pct, 0, 100);
-            changed |= slider_float_with_text_input("Loop Increment %", &cfg.sample.loop_increment_pct, -50.0f, 50.0f, "%.2f");
-            changed |= slider_float_with_text_input("Tune (semitones)", &cfg.sample.tune_semitones, -24.0f, 24.0f, "%.2f");
-            changed |= colored_slider_float("Filter Cutoff Start Hz", &cfg.sample.filter_cutoff_hz, 40.0f, 12000.0f, kEnvelopeColorTone, OverlayId::ToneOrFilter);
-            changed |= colored_slider_float("Filter Cutoff End Hz", &cfg.sample.filter_cutoff_end_hz, 40.0f, 12000.0f, kEnvelopeColorTone, OverlayId::ToneOrFilter);
-            changed |= colored_slider_float("Filter Env Decay s", &cfg.sample.filter_env_decay_s, 0.01f, 2.0f, kEnvelopeColorTone, OverlayId::ToneOrFilter);
-            changed |= slider_float_with_text_input("Filter Resonance", &cfg.sample.filter_resonance, 0.0f, 2.0f, "%.3f");
-            changed |= colored_slider_float("Amp Attack s", &cfg.sample.amp_attack_s, 0.0f, 0.3f, kEnvelopeColorAmp, OverlayId::Amp);
-            changed |= colored_slider_float("Amp Decay s", &cfg.sample.amp_decay_s, 0.0f, 0.6f, kEnvelopeColorAmp, OverlayId::Amp);
-            changed |= colored_slider_float("Amp Sustain", &cfg.sample.amp_sustain, 0.0f, 1.0f, kEnvelopeColorAmp, OverlayId::Amp);
-            changed |= colored_slider_float("Amp Release s", &cfg.sample.amp_release_s, 0.0f, 0.6f, kEnvelopeColorAmp, OverlayId::Amp);
+            using drumrom::sample_schema::SampleParamId;
+            using drumrom::sample_schema::sample_param_spec;
+            changed |= slider_float_with_text_input(
+                sample_param_spec(SampleParamId::SourceRateHz).desktop_label,
+                &cfg.sample.source_rate_hz,
+                sample_param_spec(SampleParamId::SourceRateHz).min_v,
+                sample_param_spec(SampleParamId::SourceRateHz).max_v,
+                sample_param_spec(SampleParamId::SourceRateHz).format);
+            changed |= input_int_with_scroll(
+                sample_param_spec(SampleParamId::StartPct).desktop_label,
+                &cfg.sample.start_pct,
+                static_cast<int>(sample_param_spec(SampleParamId::StartPct).min_v),
+                static_cast<int>(sample_param_spec(SampleParamId::StartPct).max_v));
+            changed |= input_int_with_scroll(
+                sample_param_spec(SampleParamId::EndPct).desktop_label,
+                &cfg.sample.end_pct,
+                static_cast<int>(sample_param_spec(SampleParamId::EndPct).min_v),
+                static_cast<int>(sample_param_spec(SampleParamId::EndPct).max_v));
+            changed |= input_int_with_scroll(
+                sample_param_spec(SampleParamId::LoopStartPct).desktop_label,
+                &cfg.sample.loop_start_pct,
+                static_cast<int>(sample_param_spec(SampleParamId::LoopStartPct).min_v),
+                static_cast<int>(sample_param_spec(SampleParamId::LoopStartPct).max_v));
+            changed |= input_int_with_scroll(
+                sample_param_spec(SampleParamId::LoopEndPct).desktop_label,
+                &cfg.sample.loop_end_pct,
+                static_cast<int>(sample_param_spec(SampleParamId::LoopEndPct).min_v),
+                static_cast<int>(sample_param_spec(SampleParamId::LoopEndPct).max_v));
+            changed |= slider_float_with_text_input(
+                sample_param_spec(SampleParamId::LoopIncrementPct).desktop_label,
+                &cfg.sample.loop_increment_pct,
+                sample_param_spec(SampleParamId::LoopIncrementPct).min_v,
+                sample_param_spec(SampleParamId::LoopIncrementPct).max_v,
+                sample_param_spec(SampleParamId::LoopIncrementPct).format);
+            changed |= slider_float_with_text_input(
+                sample_param_spec(SampleParamId::TuneSemitones).desktop_label,
+                &cfg.sample.tune_semitones,
+                sample_param_spec(SampleParamId::TuneSemitones).min_v,
+                sample_param_spec(SampleParamId::TuneSemitones).max_v,
+                sample_param_spec(SampleParamId::TuneSemitones).format);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::FilterCutoffStartHz).desktop_label,
+                &cfg.sample.filter_cutoff_hz,
+                sample_param_spec(SampleParamId::FilterCutoffStartHz).min_v,
+                sample_param_spec(SampleParamId::FilterCutoffStartHz).max_v,
+                kEnvelopeColorTone,
+                OverlayId::ToneOrFilter);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::FilterCutoffEndHz).desktop_label,
+                &cfg.sample.filter_cutoff_end_hz,
+                sample_param_spec(SampleParamId::FilterCutoffEndHz).min_v,
+                sample_param_spec(SampleParamId::FilterCutoffEndHz).max_v,
+                kEnvelopeColorTone,
+                OverlayId::ToneOrFilter);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::FilterEnvDecayS).desktop_label,
+                &cfg.sample.filter_env_decay_s,
+                sample_param_spec(SampleParamId::FilterEnvDecayS).min_v,
+                sample_param_spec(SampleParamId::FilterEnvDecayS).max_v,
+                kEnvelopeColorTone,
+                OverlayId::ToneOrFilter);
+            changed |= slider_float_with_text_input(
+                sample_param_spec(SampleParamId::FilterResonance).desktop_label,
+                &cfg.sample.filter_resonance,
+                sample_param_spec(SampleParamId::FilterResonance).min_v,
+                sample_param_spec(SampleParamId::FilterResonance).max_v,
+                sample_param_spec(SampleParamId::FilterResonance).format);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::AmpAttackS).desktop_label,
+                &cfg.sample.amp_attack_s,
+                sample_param_spec(SampleParamId::AmpAttackS).min_v,
+                sample_param_spec(SampleParamId::AmpAttackS).max_v,
+                kEnvelopeColorAmp,
+                OverlayId::Amp);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::AmpDecayS).desktop_label,
+                &cfg.sample.amp_decay_s,
+                sample_param_spec(SampleParamId::AmpDecayS).min_v,
+                sample_param_spec(SampleParamId::AmpDecayS).max_v,
+                kEnvelopeColorAmp,
+                OverlayId::Amp);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::AmpSustain).desktop_label,
+                &cfg.sample.amp_sustain,
+                sample_param_spec(SampleParamId::AmpSustain).min_v,
+                sample_param_spec(SampleParamId::AmpSustain).max_v,
+                kEnvelopeColorAmp,
+                OverlayId::Amp);
+            changed |= colored_slider_float(
+                sample_param_spec(SampleParamId::AmpReleaseS).desktop_label,
+                &cfg.sample.amp_release_s,
+                sample_param_spec(SampleParamId::AmpReleaseS).min_v,
+                sample_param_spec(SampleParamId::AmpReleaseS).max_v,
+                kEnvelopeColorAmp,
+                OverlayId::Amp);
 
             ImGui::SeparatorText("Amp Envelope");
             int env_mode_int = static_cast<int>(cfg.sample.amp_envelope_mode);

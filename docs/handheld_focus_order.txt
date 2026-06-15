@@ -1,0 +1,142 @@
+Drum Rom Designer Handheld Focus Order Map
+Date: 2026-06-15
+
+Purpose
+- Define the focus order for the handheld UI so navigation is explicit and predictable.
+- Avoid relying on default desktop tab order.
+- Keep the focus model compatible with controller-first and keyboard-first use.
+
+Global Focus Rules
+- Focus always starts at the current page header or page selector.
+- The current slot remains visible from every page.
+- A page may only expose a small number of focus groups at once.
+- If a control cannot be reached cleanly with d-pad or face buttons, it belongs in a subpage or action menu.
+- L/R shoulder buttons are never used.
+- Normal D-pad navigation is parameter-first, not page-first.
+- Plain left/right must not page-switch; it stays inside the current page unless a control explicitly uses it.
+- In Edit mode, the parameter grid is the default active region.
+- In Edit mode, plain left/right should only move between parameter cells or change parameter values.
+- Slot column and parameter grid switching in Edit mode requires a modifier action.
+
+Primary Page Order
+1. Slot Select
+2. Edit
+3. Library
+4. Export / Upload
+5. Settings
+6. Status / System
+
+Global Focus Group Order
+1. Page selector / page title row
+2. Slot summary row
+3. Main content area
+4. Secondary actions row
+5. Footer / status row
+
+Page-by-Page Focus Order
+
+1. Slot Select
+- Group 1: Page selector / title
+- Group 2: Current slot summary
+- Group 3: Slot column
+  - Focus moves up/down through slots 1 to 16
+  - D-pad left/right leaves the slot column only when moving into the page root or page actions
+- Group 4: Quick actions / preview
+  - Preview
+  - Toggle source kind
+  - Copy
+  - Paste
+- Group 5: Footer / status
+
+2. Edit
+- Group 1: Page selector / title
+- Group 2: Current slot summary
+- Group 3: Slot column
+  - Focus moves up/down through slots 1 to 16
+  - Slot column is visible but not the default active region
+  - Explicit modifier navigation switches into or out of the parameter panel
+- Group 4: Waveform preview
+  - Top third of editor panel
+- Group 5: Parameter grid
+  - Bottom two thirds of editor panel
+  - Up/down moves through parameters
+  - Left/right can move between adjacent parameter cells when needed
+  - When the selected parameter moves out of view, scroll it into view
+- Group 6: Quick actions
+  - Randomize
+  - Reset section
+  - Copy slot
+  - Paste slot
+- Group 7: Footer / status
+
+3. Library
+- Group 1: Page selector / title
+- Group 2: Library mode selector
+  - Presets
+  - Kits
+  - Samples
+  - Sysex
+- Group 3: Browser list
+  - Folder list first
+  - File list second
+- Group 4: Context actions
+  - Load
+  - Save
+  - Refresh
+  - Audition
+- Group 5: Footer / status
+
+4. Export / Upload
+- Group 1: Page selector / title
+- Group 2: Output target selector
+  - ROM output
+  - Sample export
+  - Kit export
+- Group 3: Generate / package controls
+- Group 4: USB upload controls
+- Group 5: USB diagnostics panel
+- Group 6: Footer / status
+
+5. Settings
+- Group 1: Page selector / title
+- Group 2: Display settings
+- Group 3: Control settings
+- Group 4: Loop split settings
+- Group 5: MIDI / OneROM settings
+- Group 6: Footer / status
+
+6. Status / System
+- Group 1: Page selector / title
+- Group 2: Current slot summary
+- Group 3: Upload readiness
+- Group 4: Error / warning history
+- Group 5: Build / device info
+- Group 6: Footer / status
+
+Navigation Implications
+- D-pad up/down should move through parameters and list items.
+- D-pad left/right should move between adjacent parameter fields or adjust values when a control supports horizontal changes.
+- A should activate the current control.
+- B should back out to the parent group or page root.
+- Start should open a global actions menu.
+- Select should trigger quick preview or a context-specific shortcut.
+- Shift + D-pad on the laptop keyboard should change focus groups for desktop testing.
+- Select + D-pad on handheld controllers should change focus groups or page sections.
+- Page switching should be available from the page selector or the Start menu, not from normal D-pad traversal.
+
+Practical Interaction Model
+- Normal arrow navigation stays inside the current page content.
+- Shift + arrow changes the focus group during desktop testing.
+- Select + arrow changes the focus group or section on handheld controllers.
+- B first returns to the page root, then acts as the back/exit control if already at root.
+- Page selector buttons and Start menu actions are the primary way to switch pages.
+- For Slot Select and Edit, the slot column is the default left-hand anchor.
+- For Edit, the waveform preview is a fixed visual header for the parameter grid.
+- In Edit, the parameter grid is the default interaction target; the slot column is only entered explicitly.
+
+Implementation Notes
+- The handheld UI should use explicit focus groups, not the default widget order.
+- Page switching should be a deliberate action, not a side effect of focus traversal.
+- Desktop keyboard navigation can mirror the same group order so laptop behavior stays predictable.
+- The handheld screen density should stay low enough that each focus group is readable without scrolling.
+- The handheld UI should have a clearly defined "page root" state for each page; B returns to the root before leaving the page.

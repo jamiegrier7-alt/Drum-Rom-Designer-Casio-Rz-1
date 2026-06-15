@@ -1,6 +1,7 @@
 #pragma once
 
 #include "imgui.h"
+#include "drumrom/ram_sample_layout.h"
 
 #include <cstddef>
 #include <string>
@@ -8,18 +9,12 @@
 
 namespace drumrom::ui_bottom_toolbar {
 
+using drumrom::RamSampleLayout;
+
 struct SlotItem {
     std::string label;
     bool is_sample_pad = false;
     bool is_enabled = true;
-};
-
-enum class RamSampleLayout {
-    None = 0,
-    Join12 = 1,
-    Join34 = 2,
-    Join12And34 = 3,
-    JoinAll = 4,
 };
 
 struct Model {

@@ -23,6 +23,10 @@
 #include "drumrom/main_ui_runtime_frame.h"
 #include "drumrom/main_ui_runtime_events.h"
 #include "drumrom/main_ui_runtime_bootstrap.h"
+#include "drumrom/app_core_slot_layout.h"
+#include "drumrom/app_core_history.h"
+#include "drumrom/sample_dsp_shared.h"
+#include "drumrom/sample_param_schema.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -56,19 +60,10 @@ namespace {
 using drumrom::synth::DrumParams;
 using drumrom::synth::EnvelopeShape;
 using drumrom::ui_bottom_toolbar::RamSampleLayout;
+using drumrom::app_core_slot_layout::SlotDef;
 
 // Slot definitions
-struct SlotDef {
-    const char* name;
-    const char* label;
-    std::size_t size;
-    bool is_ram_sample;
-};
-
 constexpr int kSampleRate = 20833;
-constexpr std::size_t kRamSampleBaseSize = 4096;
-constexpr std::size_t kRamSampleTotalSize = kRamSampleBaseSize * 4;
-constexpr std::size_t kRamSampleMetadataBytes = 1;
 constexpr std::array<SlotDef, 16> kSlots = {{
     {"tom1", "Tom 1", 3791, false},
     {"tom3", "Tom 3", 4087, false},
@@ -644,17 +639,12 @@ EditorSnapshot capture_snapshot() {
 void apply_snapshot(const EditorSnapshot& s) {
     g_history_applying = true;
     g_slot_cfg = s.slots;
-    g_selected_slot = std::min<std::size_t>(s.selected_slot, kSlots.size() - 1);
     g_ui_page = s.ui_page;
     g_ram_sample_layout = s.ram_sample_layout;
-    if (!is_slot_enabled(g_selected_slot)) {
-        for (std::size_t i = 0; i < kSlots.size(); ++i) {
-            if (is_slot_enabled(i)) {
-                g_selected_slot = i;
-                break;
-            }
-        }
-    }
+    g_selected_slot = drumrom::app_core_slot_layout::normalized_selected_slot(
+        kSlots,
+        g_ram_sample_layout,
+        s.selected_slot);
     g_pinbend_matrix = s.pin_matrix;
     g_sample_path_slot = static_cast<std::size_t>(-1);
     g_params_dirty = true;
@@ -664,70 +654,11 @@ void apply_snapshot(const EditorSnapshot& s) {
 }
 
 std::size_t get_slot_capacity(std::size_t slot_idx) {
-    if (slot_idx >= kSlots.size()) {
-        return 0;
-    }
-
-    const std::string slot_name = kSlots[slot_idx].name;
-    if (!kSlots[slot_idx].is_ram_sample) {
-        return kSlots[slot_idx].size;
-    }
-
-    if (slot_name == "sample1") {
-        if (g_ram_sample_layout == RamSampleLayout::Join12) {
-            return kRamSampleBaseSize * 2;
-        }
-        if (g_ram_sample_layout == RamSampleLayout::Join12And34) {
-            return kRamSampleBaseSize * 2;
-        }
-        if (g_ram_sample_layout == RamSampleLayout::JoinAll) {
-            // One-byte link metadata lives at end of sample RAM, so audio is 1 byte shorter.
-            return kRamSampleTotalSize - kRamSampleMetadataBytes;
-        }
-        return kRamSampleBaseSize;
-    }
-    if (slot_name == "sample2") {
-        if (g_ram_sample_layout == RamSampleLayout::Join12 ||
-            g_ram_sample_layout == RamSampleLayout::Join12And34 ||
-            g_ram_sample_layout == RamSampleLayout::JoinAll) {
-            return 0;
-        }
-        return kRamSampleBaseSize;
-    }
-    if (slot_name == "sample3") {
-        if (g_ram_sample_layout == RamSampleLayout::Join34) {
-            return (kRamSampleBaseSize * 2) - kRamSampleMetadataBytes;
-        }
-        if (g_ram_sample_layout == RamSampleLayout::Join12And34) {
-            return (kRamSampleBaseSize * 2) - kRamSampleMetadataBytes;
-        }
-        return kRamSampleBaseSize;
-    }
-    if (slot_name == "sample4") {
-        if (g_ram_sample_layout == RamSampleLayout::Join34 ||
-            g_ram_sample_layout == RamSampleLayout::Join12And34 ||
-            g_ram_sample_layout == RamSampleLayout::JoinAll) {
-            return 0;
-        }
-        // Last pad is slightly shorter on hardware because final RAM byte stores link flags.
-        return kRamSampleBaseSize - kRamSampleMetadataBytes;
-    }
-
-    return kSlots[slot_idx].size;
+    return drumrom::app_core_slot_layout::get_slot_capacity(kSlots, slot_idx, g_ram_sample_layout);
 }
 
 bool is_slot_enabled(std::size_t slot_idx) {
-    if (slot_idx >= kSlots.size()) {
-        return false;
-    }
-    if (!kSlots[slot_idx].is_ram_sample) {
-        return true;
-    }
-    // In JoinAll mode, only slot 6 (sample 1) is enabled
-    if (g_ram_sample_layout == RamSampleLayout::JoinAll) {
-        return slot_idx == 6;
-    }
-    return get_slot_capacity(slot_idx) > 0;
+    return drumrom::app_core_slot_layout::is_slot_enabled(kSlots, slot_idx, g_ram_sample_layout);
 }
 
 void set_ram_sample_layout(RamSampleLayout layout) {
@@ -735,59 +666,51 @@ void set_ram_sample_layout(RamSampleLayout layout) {
         return;
     }
     g_ram_sample_layout = layout;
-    if (layout == RamSampleLayout::JoinAll) {
-        g_selected_slot = 6; // Always select sample 1 for JoinAll
-    } else if (!is_slot_enabled(g_selected_slot)) {
-        if (layout == RamSampleLayout::Join34 || layout == RamSampleLayout::Join12And34) {
-            g_selected_slot = 7;
-        } else {
-            g_selected_slot = 6;
-        }
-    }
-    // Defensive: if in JoinAll, never allow selection to drift
-    if (g_ram_sample_layout == RamSampleLayout::JoinAll && g_selected_slot != 6) {
-        g_selected_slot = 6;
-    }
+    g_selected_slot = drumrom::app_core_slot_layout::selected_slot_after_layout_change(
+        kSlots,
+        g_ram_sample_layout,
+        g_selected_slot);
     g_wave_preview_dirty = true;
     g_params_dirty = true;
     g_history_commit_pending = true;
 }
 void push_snapshot(const EditorSnapshot& s) {
-    if (g_history_applying) {
-        return;
-    }
-    if (g_history_initialized && g_history_index + 1 < g_history.size()) {
-        g_history.erase(g_history.begin() + static_cast<std::ptrdiff_t>(g_history_index + 1), g_history.end());
-    }
-    g_history.push_back(s);
-    if (g_history.size() > 256) {
-        g_history.erase(g_history.begin());
-    }
-    g_history_index = g_history.empty() ? 0 : (g_history.size() - 1);
-    g_history_initialized = true;
+    drumrom::app_core_history::push_snapshot(
+        &g_history,
+        &g_history_index,
+        &g_history_initialized,
+        g_history_applying,
+        s,
+        256);
 }
 
 void initialize_history_if_needed() {
-    if (g_history_initialized) {
-        return;
-    }
-    push_snapshot(capture_snapshot());
+    drumrom::app_core_history::initialize_history_if_needed(
+        &g_history,
+        &g_history_index,
+        &g_history_initialized,
+        g_history_applying,
+        []() { return capture_snapshot(); },
+        256);
 }
 
 void maybe_commit_history(bool committed) {
-    if (!committed || g_history_applying) {
-        return;
-    }
-    initialize_history_if_needed();
-    push_snapshot(capture_snapshot());
+    drumrom::app_core_history::maybe_commit_history(
+        committed,
+        g_history_applying,
+        &g_history,
+        &g_history_index,
+        &g_history_initialized,
+        []() { return capture_snapshot(); },
+        256);
 }
 
 bool can_undo() {
-    return g_history_initialized && !g_history.empty() && g_history_index > 0;
+    return drumrom::app_core_history::can_undo(g_history, g_history_index, g_history_initialized);
 }
 
 bool can_redo() {
-    return g_history_initialized && !g_history.empty() && (g_history_index + 1) < g_history.size();
+    return drumrom::app_core_history::can_redo(g_history, g_history_index, g_history_initialized);
 }
 
 void perform_undo() {
@@ -795,11 +718,15 @@ void perform_undo() {
         return;
     }
     g_history_commit_pending = false;
-    std::size_t target_index = g_history_index - 1;
-    g_pending_snapshot = g_history[target_index];
-    g_pending_history_index = target_index;
-    g_has_pending_snapshot = true;
-    set_status("Undo");
+    if (drumrom::app_core_history::select_undo_target(
+            g_history,
+            g_history_index,
+            g_history_initialized,
+            &g_pending_snapshot,
+            &g_pending_history_index,
+            &g_has_pending_snapshot)) {
+        set_status("Undo");
+    }
 }
 
 void perform_redo() {
@@ -807,11 +734,15 @@ void perform_redo() {
         return;
     }
     g_history_commit_pending = false;
-    std::size_t target_index = g_history_index + 1;
-    g_pending_snapshot = g_history[target_index];
-    g_pending_history_index = target_index;
-    g_has_pending_snapshot = true;
-    set_status("Redo");
+    if (drumrom::app_core_history::select_redo_target(
+            g_history,
+            g_history_index,
+            g_history_initialized,
+            &g_pending_snapshot,
+            &g_pending_history_index,
+            &g_has_pending_snapshot)) {
+        set_status("Redo");
+    }
 }
 
 float ui_rate_from_internal(float internal_rate, float min_rate, float max_rate) {
@@ -1319,38 +1250,13 @@ std::vector<float> tune_resample(const std::vector<float>& in, float semitones) 
 }
 
 void apply_filter24_with_env(std::vector<float>& in, float cutoff_start_hz, float cutoff_end_hz, float env_decay_s, float resonance) {
-    if (in.empty()) {
-        return;
-    }
-
-    const float sr = static_cast<float>(kSampleRate);
-    const float c0 = clampf(cutoff_start_hz, 20.0f, 12000.0f);
-    const float c1 = clampf(cutoff_end_hz, 20.0f, 12000.0f);
-    const float env_s = std::max(0.001f, env_decay_s);
-    const float res = clampf(resonance, 0.0f, 1.0f) * 4.25f;
-
-    float y1 = 0.0f;
-    float y2 = 0.0f;
-    float y3 = 0.0f;
-    float y4 = 0.0f;
-
-    for (std::size_t i = 0; i < in.size(); ++i) {
-        const float t = static_cast<float>(i) / sr;
-        const float x = 1.0f - std::exp(-t / env_s);
-        const float cutoff = c0 + ((c1 - c0) * x);
-        const float g = std::min(0.99f, 2.0f * std::sin(3.14159265f * cutoff / sr));
-
-        float u = in[i] - (res * y4);
-        if (resonance >= 0.999f) {
-            u += 1e-5f;
-        }
-
-        y1 += g * (std::tanh(u) - std::tanh(y1));
-        y2 += g * (std::tanh(y1) - std::tanh(y2));
-        y3 += g * (std::tanh(y2) - std::tanh(y3));
-        y4 += g * (std::tanh(y3) - std::tanh(y4));
-        in[i] = y4;
-    }
+    drumrom::sample_dsp::apply_filter24_with_env(
+        &in,
+        static_cast<float>(kSampleRate),
+        cutoff_start_hz,
+        cutoff_end_hz,
+        env_decay_s,
+        resonance);
 }
 
 void apply_adsr(std::vector<float>& in, float attack_s, float decay_s, float sustain, float release_s) {

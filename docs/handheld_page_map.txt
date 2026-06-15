@@ -1,0 +1,160 @@
+Drum Rom Designer Handheld Page Map
+Date: 2026-06-15
+
+Purpose
+- Define the handheld UI hierarchy for the PortMaster-friendly build.
+- Keep the page structure small-screen first and controller-first.
+- Provide a stable map for future focus order and page shifting.
+
+Top-Level Handheld Hierarchy
+1. Home / Slot Select
+   - Select current slot/pad.
+   - Quick preview.
+   - Show current source type and basic slot state.
+  - Left slot column with 1 to 16 squares.
+  - D-pad up/down moves through the slot column.
+
+2. Edit
+   - Synth Edit
+     - Kick / Snare / Hat / Tom / Clap / Elements / Elements Exact
+   - Sample Edit
+     - Start / End / Loop / Tune / Filter / Amp envelope
+   - Loop Edit
+     - Loop slice assignment
+     - Region preview
+   - Shared Quick Actions
+     - Randomize
+     - Copy
+     - Paste
+     - Toggle source kind
+
+3. Library
+   - Presets
+     - Load preset
+     - Save preset
+     - Recent presets
+   - Kits
+     - Load kit
+     - Save kit
+     - Factory kit templates
+   - Samples
+     - Browse sample folders
+     - Import / audition samples
+   - Sysex
+     - Dump capture browser
+     - Import / export sysex files
+
+4. Export / Upload
+   - Generate ROM/sample output files
+   - Package kit/preset assets
+   - OneROM USB upload
+   - USB diagnostics / permission status
+
+5. Settings
+   - Display / scale / layout mode
+   - Control hints
+   - Loop split options
+   - MIDI / OneROM options
+   - Handheld profile settings
+
+6. Status / System
+   - Current slot summary
+   - Current page summary
+   - Upload readiness
+   - Error / warning messages
+   - Build / device info
+
+Navigation Model
+- D-pad left/right:
+  - Move between adjacent parameters, tabs, or value fields.
+- D-pad up/down:
+  - Move through parameters and list items in the active section.
+- A:
+  - Activate current control.
+- B:
+  - Back / cancel / close subpanel.
+- Start:
+  - Open global actions menu.
+- Select:
+  - Quick preview or context action toggle.
+- Plain left/right should never switch between pages like Slot Select, Edit, Library, Export, or Settings.
+- In Edit mode, plain left/right only moves parameter cells or value fields when the parameter grid is active.
+- Switching between slot column and parameter grid requires a modifier action.
+
+Handheld Hardware Constraint
+- L/R shoulder buttons are disabled on the handheld devices we plan to support.
+- Do not use shoulder buttons for page switching or any core workflow.
+- Top-level page movement should be handled by d-pad or face-button shortcuts only.
+
+Focus Group Switching
+- Normal D-pad use should stay inside the current focus group.
+- Shift on the laptop keyboard should emulate Select and open the page-select menu during desktop testing.
+- Select on handheld controllers should open the page-select menu.
+- While the page-select menu is open, Up/Down changes the highlighted page and confirm applies the switch.
+- The page-select menu should be a single centered rectangle overlay.
+- While highlighting pages in the menu, the main display should preview the highlighted page before confirmation.
+- Start should preview/play the currently selected slot sample.
+- For desktop testing, keyboard S should emulate Start.
+- B should return to the page root before leaving the current page.
+- Plain left/right should never switch between pages like Slot Select, Edit, Library, Export, or Settings.
+
+Display Constraints
+- The handheld UI should never show scrollbars.
+
+Slot Select / Editor Layout
+- Slot Select mode uses the same split layout as Editor (left slot column, right waveform + parameter panel).
+- Editor mode uses the same left-hand slot column plus a right-side editor panel.
+- Right from Slot Select should immediately enter the parameter grid for the selected slot.
+- Editor mode starts on the parameter grid, not the slot column.
+- The slot column remains visible but must be entered explicitly.
+- In Edit mode, pressing Left at the far-left parameter column enters slot selection focus.
+- The slot column should be only as wide as needed for two-digit slot labels (01-16).
+- In Editor mode, the right-side panel fills the full width available to the right of the slot column.
+- In Editor mode, waveform preview fills the top third of that right-side panel.
+- A full-width source/type bar sits below the waveform (Sample, Loop, and synth types).
+- Pressing Up from the top row of parameters should move focus into the source/type bar.
+- In the source/type bar, Left/Right should change the selected type and Down should return to parameters.
+- Type buttons should be sized to fit their text labels (no oversized fixed-width tokens).
+- In Editor mode, parameter entries fill the bottom two thirds of that right-side panel.
+- Parameter entries should show as text only (no boxed button background), in 4-5 columns depending on fit.
+- Parameter entries should switch to the selected source/drum type's parameter set (sample/loop/kick/snare/hihat/tom/clap/elements), matching desktop behavior.
+- Holding A on a parameter enters value-adjust mode: Left/Right decrements/increments by 1, Up/Down increments/decrements by 10.
+- Pressing X randomizes parameter values for the currently selected slot and retriggers preview.
+- Waveform display should show the rendered slot audio waveform from slot sample data, not a synthetic placeholder waveform.
+- Waveform rendering should fit to the slot capacity defined by RZ-1 map files in configs/ (pad/trim to slot size).
+- Waveform preview should include color-coded overlay envelopes similar to desktop: amp (red), filter/tone (green), pitch (blue).
+- If the parameter grid exceeds the visible area, the selected parameter should scroll into view while moving up/down.
+
+Startup Defaults
+- Handheld startup should load slot source/type defaults from kits/default-rz1-kit.kit when available.
+
+Focus / Shifting Notes
+- The handheld UI should not rely on raw desktop tab order.
+- Each page needs an explicit focus group order.
+- When a page contains multiple sections, the focus should shift in a predictable loop:
+  - top action row
+  - main content area
+  - secondary actions
+  - page footer / status row
+- Slot selection should remain visible and reachable from every page.
+- If a control cannot be edited with the d-pad, it should be moved into a separate subpage or action menu.
+- The handheld default path is parameter-first; group switching is an explicit modifier action, not the normal flow.
+
+Current Scaffold Mapping
+- Slot Select page maps to the current handheld "Slots" page.
+- Edit page maps to the current handheld "Edit" page.
+- Export / Upload page maps to the current handheld "Export" page.
+- Settings page maps to the current handheld "Settings" page.
+
+Planned Expansion Order
+1. Slot Select
+2. Export / Upload
+3. Library
+4. Edit
+5. Settings
+6. Status / System
+
+Notes
+- This map is intentionally hierarchical rather than a flat list.
+- The layout should stay readable on small screens with minimal per-page density.
+- USB upload is essential, but the app must still remain usable when upload is unavailable.

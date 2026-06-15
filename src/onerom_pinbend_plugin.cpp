@@ -1,4 +1,3 @@
-// C++ wrapper/adapter for integrating the OneROM pin-bend plugin interface.
 #include <array>
 #include <cstddef>
 #include <cstdint>

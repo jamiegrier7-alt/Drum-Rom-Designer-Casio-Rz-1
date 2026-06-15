@@ -1,4 +1,3 @@
-// OneROM plugin C entry points and pin matrix definitions used by the host.
 #include <stdint.h>
 #include <stddef.h>
 
